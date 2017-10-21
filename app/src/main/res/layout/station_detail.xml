@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 실시간 정보 출력하는 Layout -->
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:weightSum="2.8"
+                android:background="@color/colorWhite"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textStationName"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <TextView
+                        android:id="@+id/textStationPrev"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/textStationName"
+                        android:layout_toStartOf="@+id/textStationName"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="10dp"/>
+
+                    <TextView
+                        android:id="@+id/textStationNext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/textStationName"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="10dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.8">
+
+                    <TextView
+                        android:id="@+id/textLeftFirstTrain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="5dp"
+                        android:text="동묘앞행" />
+
+                    <TextView
+                        android:id="@+id/textLeftFirstWhere"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="5dp"
+                        android:layout_toEndOf="@+id/textLeftSecondTrain"
+                        android:layout_toRightOf="@+id/textLeftSecondTrain"
+                        android:text="전역 도착"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <TextView
+                        android:id="@+id/textLeftSecondTrain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/textLeftFirstTrain"
+                        android:layout_margin="5dp"
+                        android:text="청량리행" />
+
+                    <TextView
+                        android:id="@+id/textLeftSecondWhere"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textLeftFirstWhere"
+                        android:layout_margin="5dp"
+                        android:layout_toEndOf="@+id/textLeftSecondTrain"
+                        android:layout_toRightOf="@+id/textLeftSecondTrain"
+                        android:text="4번째 전"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@android:color/darker_gray"
+                        android:tag="@null" />
+
+                    <TextView
+                        android:id="@+id/textRightFirstTrain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/textLeftFirstWhere"
+                        android:layout_alignBottom="@+id/textLeftFirstWhere"
+                        android:layout_margin="5dp"
+                        android:layout_toEndOf="@+id/view2"
+                        android:layout_toRightOf="@+id/view2"
+                        android:text="신창행" />
+
+                    <TextView
+                        android:id="@+id/textRightFirstWhere"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/textRightFirstTrain"
+                        android:layout_alignBottom="@+id/textRightFirstTrain"
+                        android:layout_margin="5dp"
+                        android:layout_toEndOf="@+id/textRightSecondTrain"
+                        android:layout_toRightOf="@+id/textRightSecondTrain"
+                        android:text="전역 도착"
+                        android:textColor="@android:color/holo_red_dark" />
+
+                    <TextView
+                        android:id="@+id/textRightSecondTrain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/textLeftSecondWhere"
+                        android:layout_alignBottom="@+id/textLeftSecondWhere"
+                        android:layout_below="@id/textRightFirstTrain"
+                        android:layout_margin="5dp"
+                        android:layout_toRightOf="@+id/view2"
+                        android:text="서동탄행" />
+
+                    <TextView
+                        android:id="@+id/textRightSecondWhere"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/textRightSecondTrain"
+                        android:layout_alignBottom="@+id/textRightSecondTrain"
+                        android:layout_margin="5dp"
+                        android:layout_toEndOf="@+id/textRightSecondTrain"
+                        android:layout_toRightOf="@+id/textRightSecondTrain"
+                        android:text="3번째 전"
+                        android:textColor="@android:color/holo_red_dark" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="열차 시간표" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- 지도 정보 출력하는 Layout -->
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorWhite"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <TextView
+                    android:id="@+id/textMapTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="10dp"
+                    android:text="위치"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/textMapTitle"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="10dp"/>
+            </RelativeLayout>
+
+            <!-- 주소 및 전화번호 출력하는 Layout -->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorWhite"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/relativeLayout">
+
+                <TextView
+                    android:id="@+id/textAddressTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"
+                    android:text="주소"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:id="@+id/textAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/textAddressTitle"
+                    android:layout_alignStart="@+id/textAddressTitle"
+                    android:layout_below="@+id/textAddressTitle"
+                    android:layout_margin="10dp"
+                    android:text="경기도 의왕시" />
+
+                <TextView
+                    android:id="@+id/textPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/textAddress"
+                    android:layout_alignStart="@+id/textAddress"
+                    android:layout_below="@+id/textAddress"
+                    android:text="032-361-4870" />
+
+            </RelativeLayout>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
