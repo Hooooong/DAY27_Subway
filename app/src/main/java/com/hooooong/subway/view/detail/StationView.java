@@ -11,6 +11,7 @@ import com.hooooong.subway.R;
 import com.hooooong.subway.model.realtimestation.RealTimeArrivalList;
 import com.hooooong.subway.model.station.StationList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,24 +68,65 @@ public class StationView extends FrameLayout{
         textPhoneNumber.setText(stationList.getTelno());
     }
 
-    public void setChangeData(List<RealTimeArrivalList> realTimeArrivalList){
+    public void setChangeData(List<RealTimeArrivalList> realTimeArrivalList, long currentTime){
+        List<RealTimeArrivalList> upLine = new ArrayList<>();
+        List<RealTimeArrivalList> downLine = new ArrayList<>();
 
-        textLeftFirstTrain.setText("뿌");
-        /*
-        textLeftFirstTrain =
-        textLeftFirstWhere =
-        textLeftSecondTrain =
-        textLeftSecondWhere =
-        textRightFirstTrain =
-        textRightFirstWhere =
-        textRightSecondTrain =
-        textRightSecondWhere =
-        */
+        for(RealTimeArrivalList temp : realTimeArrivalList){
+            if("상행".equals(temp.getUpdnLine())){
+                upLine.add(temp);
+            }else{
+                downLine.add(temp);
+            }
+        }
+
+        if(upLine.size() == 0){
+
+        }else if(upLine.size() == 1){
+            String train = upLine.get(0).getTrainLineNm();
+            train =  train.substring(0, train.indexOf("-")-1);
+
+            textLeftFirstTrain.setText(train);
+            textLeftFirstWhere.setText(upLine.get(0).getArvlMsg2());
+        }else{
+            String train = upLine.get(0).getTrainLineNm();
+            train =  train.substring(0, train.indexOf("-")-1);
+            String train2 = upLine.get(1).getTrainLineNm();
+            train2 =  train2.substring(0, train2.indexOf("-")-1);
+
+            textLeftFirstTrain.setText(train);
+            textLeftFirstWhere.setText(upLine.get(0).getArvlMsg2());
+            textLeftSecondTrain.setText(train2);
+            textLeftSecondWhere.setText(upLine.get(1).getArvlMsg2());
+        }
+
+
+        if(downLine.size() == 0){
+
+        }else if(downLine.size() == 1){
+            String train = downLine.get(0).getTrainLineNm();
+            train =  train.substring(0, train.indexOf("-")-1);
+
+            textRightFirstTrain.setText(train);
+            textRightFirstWhere.setText(downLine.get(0).getArvlMsg2());
+        }else{
+            String train = downLine.get(0).getTrainLineNm();
+            train =  train.substring(0, train.indexOf("-")-1);
+            String train2 = downLine.get(1).getTrainLineNm();
+            train2 =  train2.substring(0, train2.indexOf("-")-1);
+
+            textRightFirstTrain.setText(train);
+            textRightFirstWhere.setText(downLine.get(0).getArvlMsg2());
+            textRightSecondTrain.setText(train2);
+            textRightSecondWhere.setText(downLine.get(1).getArvlMsg2());
+        }
     }
 
     public String getSubwayId() {
         return stationList.getSubwayId();
     }
+
+    public String getStationNm(){return stationList.getStatnNm();}
 }
 
 

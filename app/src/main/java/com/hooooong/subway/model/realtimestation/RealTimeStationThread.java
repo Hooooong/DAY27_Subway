@@ -1,6 +1,7 @@
 package com.hooooong.subway.model.realtimestation;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hooooong.subway.util.Remote;
@@ -58,13 +59,14 @@ public class RealTimeStationThread {
                     @Override
                     protected void onPostExecute(String result) {
                         RealTimeStation realTimeStation = parsingJson(result);
-                        stationListener.changeData(realTimeStation);
+                        stationListener.changeData(realTimeStation, System.currentTimeMillis());
                     }
                 }.execute(UrlInfo.getStationRtUrl(stationName));
 
                 try {
-                    sleep(10000);
+                    sleep(30000);
                 } catch (InterruptedException e) {
+                    Log.e("에러", "에러");
                     e.printStackTrace();
                 }
             }

@@ -49,7 +49,6 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
         }
 
         realTimeStationThread = RealTimeStationThread.getInstance(this);
-
         initView();
         initListener();
         load();
@@ -89,7 +88,7 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
                     Toast.makeText(DetailActivity.this, "지하철 역 정보 API 호출 실패!!", Toast.LENGTH_SHORT).show();
                     finish();
                 }else{
-                    parsingJson(result);
+                    station = parsingJson(result);
                     setTabLayout();
                     setDetailView();
                     realTimeStationThread.set(stationName);
@@ -98,15 +97,16 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
         }.execute(UrlInfo.getStationInfoUrl(stationName));
     }
 
-    private void parsingJson(String result) {
+    private Station parsingJson(String result) {
         Gson gson = new Gson();
-        station = gson.fromJson(result, Station.class);
+        return gson.fromJson(result, Station.class);
     }
 
     private void setTabLayout() {
         // TabLayout 에 Text 출력
         for(int i = 0 ; i<station.getStationList().length; i++){
             tabLayout.addTab(tabLayout.newTab().setText(station.getStationList()[i].getSubwayNm()));
+            // tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.tab_icon));
         }
     }
 
@@ -146,7 +146,8 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
     }
 
     @Override
-    public void changeData(RealTimeStation realTimeStation) {
-        stationAdapter.changeView(realTimeStation);
+    public void changeData(RealTimeStation realTimeStation, long currentTime) {
+        stationAdapter.changeView(realTimeStation, currentTime);
+        viewPager.invalidate();
     }
 }

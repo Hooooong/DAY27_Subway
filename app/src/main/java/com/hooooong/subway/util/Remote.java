@@ -52,6 +52,7 @@ public class Remote {
                     br.close();
                     isr.close();
                 } else {
+                    result.append(Const.CONNECTION_ERROR);
                     Log.e("ServerError", urlConnection.getResponseCode() + " , " + urlConnection.getResponseMessage());
                 }
                 urlConnection.disconnect();
