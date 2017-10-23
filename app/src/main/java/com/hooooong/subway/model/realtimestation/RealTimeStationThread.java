@@ -1,6 +1,7 @@
 package com.hooooong.subway.model.realtimestation;
 
-import android.os.AsyncTask;
+import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -16,20 +17,21 @@ public class RealTimeStationThread {
 
 
     private boolean runFlag = true;
+    private Context context;
 
     private static RealTimeStationThread realTimeStationThread;
     private String stationName;
     private StationRTThread thread;
     private StationAdapter.StationListener stationListener;
 
-    private RealTimeStationThread(StationAdapter.StationListener stationListener) {
-        this.stationListener = stationListener;
-
+    private RealTimeStationThread(Context context) {
+        stationListener = (StationAdapter.StationListener) context;
+        this.context = context;
     }
 
-    public static RealTimeStationThread getInstance(StationAdapter.StationListener stationListener) {
+    public static RealTimeStationThread getInstance(Context context) {
         if (realTimeStationThread == null) {
-            realTimeStationThread = new RealTimeStationThread(stationListener);
+            realTimeStationThread = new RealTimeStationThread(context);
         }
         return realTimeStationThread;
     }
@@ -45,23 +47,18 @@ public class RealTimeStationThread {
         @Override
         public void run() {
             while (runFlag) {
-                new AsyncTask<String, Void, String>() {
-                    @Override
-                    protected void onPreExecute() {
 
-                    }
+                String result =  Remote.getData(UrlInfo.getStationRtUrl(stationName));
 
-                    @Override
-                    protected String doInBackground(String... args) {
-                        return Remote.getData(args[0]);
-                    }
+                Log.e("RealTimeStationThread", "onPostExecute() 호출, " + result );
+                final RealTimeStation realTimeStation = parsingJson(result);
 
+                ((Activity)context).runOnUiThread(new Runnable() {
                     @Override
-                    protected void onPostExecute(String result) {
-                        RealTimeStation realTimeStation = parsingJson(result);
+                    public void run() {
                         stationListener.changeData(realTimeStation, System.currentTimeMillis());
                     }
-                }.execute(UrlInfo.getStationRtUrl(stationName));
+                });
 
                 try {
                     sleep(30000);
@@ -78,8 +75,11 @@ public class RealTimeStationThread {
     }
 
     private RealTimeStation parsingJson(String result) {
-        Gson gson = new Gson();
-        return gson.fromJson(result, RealTimeStation.class);
+        try {
+            Gson gson = new Gson();
+            return gson.fromJson(result, RealTimeStation.class);
+        }catch(Exception e){
+            return new RealTimeStation();
+        }
     }
-
 }

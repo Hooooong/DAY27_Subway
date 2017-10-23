@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements SubwayLineView.Su
         for(SubwayLine subwayLine : subwayLineList){
             tabLayout.addTab(tabLayout.newTab().setText(subwayLine.getSearchSTNBySubwayLineService().getRow()[0].getLINE_NUM()));
         }
+
+
     }
 
     private void initViewPager(List<SubwayLine> subwayLineList) {

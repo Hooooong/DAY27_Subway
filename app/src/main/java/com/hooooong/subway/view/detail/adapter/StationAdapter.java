@@ -2,6 +2,7 @@ package com.hooooong.subway.view.detail.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,15 +20,18 @@ import java.util.List;
 
 public class StationAdapter extends PagerAdapter {
 
-    private List<StationView> views;
+    private List<StationView> views = null;
     private Context context;
     private StationList[] stationList;
+//    private RealTimeStation realTimeStation;
+//    private long currentTime;
 
-    public StationAdapter(Context context, StationList[] data) {
+    public StationAdapter(Context context,StationList[] data) {
+
+        Log.e("StationAdapter", "StationAdapter() 호출");
         this.context = context;
         this.stationList = data;
         views = new ArrayList<>();
-
         for (int i = 0; i < stationList.length; i++) {
             views.add(new StationView(context, stationList[i]));
         }
@@ -35,6 +39,7 @@ public class StationAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
+        Log.e("StationAdapter", "instantiateItem() 호출");
         StationView view = views.get(position);
         container.addView(view);
         return view;
@@ -56,7 +61,8 @@ public class StationAdapter extends PagerAdapter {
     }
 
     public void changeView(RealTimeStation realTimeStation, long currentTime) {
-
+//        this.realTimeStation = realTimeStation;
+//        this.currentTime = currentTime;
         for(StationView view : views){
             List<RealTimeArrivalList> realTimeArrivalList = new ArrayList<>();
             for (RealTimeArrivalList realTimeArrival : realTimeStation.getRealtimeArrivalList()) {
@@ -66,6 +72,11 @@ public class StationAdapter extends PagerAdapter {
             }
             view.setChangeData(realTimeArrivalList, currentTime);
         }
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
     public interface StationListener {

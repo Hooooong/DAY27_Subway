@@ -88,8 +88,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_margin="5dp"
-                        android:layout_toEndOf="@+id/textLeftSecondTrain"
-                        android:layout_toRightOf="@+id/textLeftSecondTrain"
+                        android:layout_toEndOf="@+id/textLeftFirstTrain"
+                        android:layout_toRightOf="@+id/textLeftFirstTrain"
                         android:textColor="@android:color/holo_red_dark" />
 
                     <TextView
@@ -145,8 +145,8 @@
                         android:layout_alignBaseline="@+id/textRightFirstTrain"
                         android:layout_alignBottom="@+id/textRightFirstTrain"
                         android:layout_margin="5dp"
-                        android:layout_toEndOf="@+id/textRightSecondTrain"
-                        android:layout_toRightOf="@+id/textRightSecondTrain"
+                        android:layout_toEndOf="@+id/textRightFirstTrain"
+                        android:layout_toRightOf="@+id/textRightFirstTrain"
                         android:textColor="@android:color/holo_red_dark" />
 
                     <TextView

@@ -1,6 +1,7 @@
 package com.hooooong.subway.view.detail;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ import com.hooooong.subway.model.realtimestation.RealTimeStation;
 import com.hooooong.subway.model.realtimestation.RealTimeStationThread;
 import com.hooooong.subway.model.station.Station;
 import com.hooooong.subway.util.Remote;
+import com.hooooong.subway.util.TabText;
 import com.hooooong.subway.util.UrlInfo;
 import com.hooooong.subway.view.detail.adapter.StationAdapter;
 
@@ -35,7 +37,7 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
     private String stationLine;
 
     private StationAdapter stationAdapter;
-    private RealTimeStationThread realTimeStationThread ;
+    private RealTimeStationThread realTimeStationThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
         setContentView(R.layout.activity_detail);
 
         Intent intent = getIntent();
-        if(intent != null){
+        if (intent != null) {
             stationName = intent.getStringExtra(Const.KEY_STATION_NAME);
             stationLine = intent.getStringExtra(Const.KEY_STATION_LINE);
         }
@@ -54,14 +56,15 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
         load();
     }
 
-    private void initView(){
-        progressBar = (ProgressBar)findViewById(R.id.progressBar);
-        toolbar = (Toolbar)findViewById(R.id.toolBar);
+    private void initView() {
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        toolbar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         tabLayout = toolbar.findViewById(R.id.tabLayout);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        viewPager = (ViewPager)findViewById(R.id.viewPager);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
     }
 
     private void initListener() {
@@ -69,8 +72,8 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
     }
 
-    private void load(){
-        new AsyncTask<String, Void, String>(){
+    private void load() {
+        new AsyncTask<String, Void, String>() {
             @Override
             protected void onPreExecute() {
                 progressBar.setVisibility(View.VISIBLE);
@@ -84,10 +87,10 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
             @Override
             protected void onPostExecute(String result) {
                 progressBar.setVisibility(View.GONE);
-                if(Const.CONNECTION_ERROR.equals(result)){
+                if (Const.CONNECTION_ERROR.equals(result)) {
                     Toast.makeText(DetailActivity.this, "지하철 역 정보 API 호출 실패!!", Toast.LENGTH_SHORT).show();
                     finish();
-                }else{
+                } else {
                     station = parsingJson(result);
                     setTabLayout();
                     setDetailView();
@@ -103,11 +106,36 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
     }
 
     private void setTabLayout() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                TabText tabText = (TabText)tabLayout.getTabAt(tab.getPosition()).getCustomView();
+                tabText.changeBackground(true);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                TabText tabText = (TabText)tabLayout.getTabAt(tab.getPosition()).getCustomView();
+                tabText.changeBackground(false);
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
         // TabLayout 에 Text 출력
-        for(int i = 0 ; i<station.getStationList().length; i++){
-            tabLayout.addTab(tabLayout.newTab().setText(station.getStationList()[i].getSubwayNm()));
+        for (int i = 0; i < station.getStationList().length; i++) {
+            TabLayout.Tab tab = tabLayout.newTab();
+            TabText tabText = new TabText(this, station.getStationList()[i].getSubwayNm());
+            tab.setCustomView(tabText);
+            tabLayout.addTab(tab);
             // tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.tab_icon));
         }
+
+
     }
 
     private void setDetailView() {
@@ -125,7 +153,7 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_close:
                 finish();
                 break;
@@ -148,6 +176,6 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
     @Override
     public void changeData(RealTimeStation realTimeStation, long currentTime) {
         stationAdapter.changeView(realTimeStation, currentTime);
-        viewPager.invalidate();
+        stationAdapter.notifyDataSetChanged();
     }
 }

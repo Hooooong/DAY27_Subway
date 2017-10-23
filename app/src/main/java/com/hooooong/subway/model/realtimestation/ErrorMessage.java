@@ -5,19 +5,27 @@ package com.hooooong.subway.model.realtimestation;
  */
 
 public class ErrorMessage {
-    private String total;
+    private int total;
     private String message;
-    private String status;
+    private int status;
     private String developerMessage;
     private String link;
     private String code;
 
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getMessage() {
@@ -28,13 +36,6 @@ public class ErrorMessage {
         this.message = message;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public String getDeveloperMessage() {
         return developerMessage;

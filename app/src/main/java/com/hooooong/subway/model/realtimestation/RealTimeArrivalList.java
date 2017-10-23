@@ -7,12 +7,12 @@ package com.hooooong.subway.model.realtimestation;
 public class RealTimeArrivalList {
     private String statnList;
     private String statnFid;
-    private String selectedCount;
+    private int selectedCount;
     private String btrainNo;
     private String subwayList;
     private String statnTid;
     private String subwayId;
-    private String totalCount;
+    private int totalCount;
     private String curPage;
     private String statnNm;
     private String bstatnNm;
@@ -30,7 +30,7 @@ public class RealTimeArrivalList {
     private String updnLine;
     private String trainLineNm;
     private String ordkey;
-    private String rowNum;
+    private int rowNum;
     private String pageRow;
     private String statnId;
     private String subwayNm;
@@ -51,12 +51,8 @@ public class RealTimeArrivalList {
         this.statnFid = statnFid;
     }
 
-    public String getSelectedCount() {
+    public int getSelectedCount() {
         return selectedCount;
-    }
-
-    public void setSelectedCount(String selectedCount) {
-        this.selectedCount = selectedCount;
     }
 
     public String getBtrainNo() {
@@ -91,13 +87,6 @@ public class RealTimeArrivalList {
         this.subwayId = subwayId;
     }
 
-    public String getTotalCount() {
-        return totalCount;
-    }
-
-    public void setTotalCount(String totalCount) {
-        this.totalCount = totalCount;
-    }
 
     public String getCurPage() {
         return curPage;
@@ -235,11 +224,23 @@ public class RealTimeArrivalList {
         this.ordkey = ordkey;
     }
 
-    public String getRowNum() {
+    public void setSelectedCount(int selectedCount) {
+        this.selectedCount = selectedCount;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public int getRowNum() {
         return rowNum;
     }
 
-    public void setRowNum(String rowNum) {
+    public void setRowNum(int rowNum) {
         this.rowNum = rowNum;
     }
 

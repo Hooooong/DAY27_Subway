@@ -5,4 +5,26 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorWhite">#FFFFFF</color>
+
+    <color name="lineOne">#00498B</color>
+    <color name="lineTwo">#009246</color>
+    <color name="lineThree">#F36630</color>
+    <color name="lineFour">#00A2D1</color>
+    <color name="lineFive">#5940FF</color>
+    <color name="lineSix">#CC660D</color>
+    <color name="lineSeven">#4D8000</color>
+    <color name="lineEight">#FF33A6</color>
+    <color name="lineNine">#8E764B</color>
+
+    <color name="lineCenter">#72C7A6</color>
+    <color name="lineBundang">#E0A134</color>
+    <color name="lineAirport">#0065B3</color>
+    <color name="lineIncheonOne">#6E98BB</color>
+    <color name="lineIncheonTwo">#ED8B00</color>
+    
+    <color name="lineGyeongchun">#32C6A6</color>
+    <color name="lineSuin">#E0A134</color>
+    <color name="lineNewBundang">#BB1833</color>
+
+
 </resources>
