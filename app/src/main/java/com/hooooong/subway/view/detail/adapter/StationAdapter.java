@@ -2,7 +2,6 @@ package com.hooooong.subway.view.detail.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,15 +20,9 @@ import java.util.List;
 public class StationAdapter extends PagerAdapter {
 
     private List<StationView> views = null;
-    private Context context;
     private StationList[] stationList;
-//    private RealTimeStation realTimeStation;
-//    private long currentTime;
 
-    public StationAdapter(Context context,StationList[] data) {
-
-        Log.e("StationAdapter", "StationAdapter() 호출");
-        this.context = context;
+    public StationAdapter(Context context, StationList[] data) {
         this.stationList = data;
         views = new ArrayList<>();
         for (int i = 0; i < stationList.length; i++) {
@@ -39,7 +32,6 @@ public class StationAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        Log.e("StationAdapter", "instantiateItem() 호출");
         StationView view = views.get(position);
         container.addView(view);
         return view;
@@ -57,13 +49,12 @@ public class StationAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((StationView)object);
+        container.removeView((StationView) object);
     }
 
     public void changeView(RealTimeStation realTimeStation, long currentTime) {
-//        this.realTimeStation = realTimeStation;
-//        this.currentTime = currentTime;
-        for(StationView view : views){
+        for (StationView view : views) {
+            // View 에 맞는 데이터를 업데이트한다.
             List<RealTimeArrivalList> realTimeArrivalList = new ArrayList<>();
             for (RealTimeArrivalList realTimeArrival : realTimeStation.getRealtimeArrivalList()) {
                 if (view.getSubwayId().equals(realTimeArrival.getSubwayId())) {

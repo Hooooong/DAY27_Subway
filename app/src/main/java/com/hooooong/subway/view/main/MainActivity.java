@@ -35,10 +35,6 @@ public class MainActivity extends AppCompatActivity implements SubwayLineView.Su
         load();
         initView();
         initListener();
-        /*initView();
-        setTabLayout();
-        initViewPager();
-        initListener();*/
     }
 
     private void load() {

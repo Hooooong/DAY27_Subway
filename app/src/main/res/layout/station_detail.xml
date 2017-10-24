@@ -22,7 +22,7 @@
                 android:layout_height="200dp"
                 android:background="@color/colorWhite"
                 android:orientation="vertical"
-                android:weightSum="3"
+                android:weightSum="2.7"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -30,38 +30,44 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.3">
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/textStationName"
-                        android:layout_width="120dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:layout_margin="15dp"
+                        android:textSize="18dp"
                         android:gravity="center"
+                        android:elevation="5dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                     <TextView
                         android:id="@+id/textStationPrev"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="25dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/textStationName"
-                        android:layout_toStartOf="@+id/textStationName"
+                        android:layout_alignRight="@+id/textStationName"
                         android:gravity="left|center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:textSize="12dp"
                         android:paddingLeft="10dp" />
 
                     <TextView
                         android:id="@+id/textStationNext"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="25dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/textStationName"
+                        android:layout_marginLeft="10dp"
+                        android:layout_alignLeft="@+id/textStationName"
                         android:gravity="right|center_vertical"
+                        android:textSize="12dp"
                         android:paddingRight="10dp" />
                 </RelativeLayout>
 
@@ -250,8 +256,7 @@
                     android:layout_alignLeft="@+id/textAddressTitle"
                     android:layout_alignStart="@+id/textAddressTitle"
                     android:layout_below="@+id/textAddressTitle"
-                    android:layout_margin="10dp"
-                    android:text="경기도 의왕시" />
+                    android:layout_margin="10dp"/>
 
                 <TextView
                     android:id="@+id/textPhoneNumber"
@@ -259,8 +264,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/textAddress"
                     android:layout_alignStart="@+id/textAddress"
-                    android:layout_below="@+id/textAddress"
-                    android:text="032-361-4870" />
+                    android:layout_below="@+id/textAddress"/>
             </RelativeLayout>
 
         </android.support.constraint.ConstraintLayout>

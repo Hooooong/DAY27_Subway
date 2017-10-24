@@ -7,7 +7,6 @@ package com.hooooong.subway.model.subwayline;
 public class SearchSTNBySubwayLineService {
     private RESULT RESULT;
     private String list_total_count;
-
     private Row[] row;
 
     public RESULT getRESULT() {

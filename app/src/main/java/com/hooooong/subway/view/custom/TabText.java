@@ -1,4 +1,4 @@
-package com.hooooong.subway.util;
+package com.hooooong.subway.view.custom;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -88,12 +88,12 @@ public class TabText extends android.support.v7.widget.AppCompatTextView {
                 setText("공항철도");
                 setTextColor(color);
                 break;
-            case "분당":
+            case "분당선":
                 color = ContextCompat.getColor(context, R.color.lineBundang);
                 setText("분당");
                 setTextColor(color);
                 break;
-            case "신분당":
+            case "신분당선":
                 color = ContextCompat.getColor(context, R.color.lineNewBundang);
                 setText("신분당");
                 setTextColor(color);

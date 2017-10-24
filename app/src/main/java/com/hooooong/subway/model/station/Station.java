@@ -6,7 +6,6 @@ package com.hooooong.subway.model.station;
 
 public class Station {
     private ErrorMessage errorMessage;
-
     private StationList[] stationList;
 
     public ErrorMessage getErrorMessage() {

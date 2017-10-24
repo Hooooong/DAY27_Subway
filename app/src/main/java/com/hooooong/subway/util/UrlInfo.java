@@ -24,7 +24,7 @@ public class UrlInfo {
      * @return
      */
     public static String getStationInfoUrl(String stationName){
-        return Const.STATION_INFO + stationName;
+        return Const.STATION_DETAIL_INFO + stationName;
 
     }
 

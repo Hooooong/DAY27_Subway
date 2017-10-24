@@ -21,7 +21,7 @@ import com.hooooong.subway.model.realtimestation.RealTimeStation;
 import com.hooooong.subway.model.realtimestation.RealTimeStationThread;
 import com.hooooong.subway.model.station.Station;
 import com.hooooong.subway.util.Remote;
-import com.hooooong.subway.util.TabText;
+import com.hooooong.subway.view.custom.TabText;
 import com.hooooong.subway.util.UrlInfo;
 import com.hooooong.subway.view.detail.adapter.StationAdapter;
 
@@ -50,7 +50,8 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
             stationLine = intent.getStringExtra(Const.KEY_STATION_LINE);
         }
 
-        realTimeStationThread = RealTimeStationThread.getInstance(this);
+        realTimeStationThread = new RealTimeStationThread(this);
+
         initView();
         initListener();
         load();
@@ -64,7 +65,7 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
         tabLayout = toolbar.findViewById(R.id.tabLayout);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
-        tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
+        tabLayout.setSelectedTabIndicatorColor(Color.TRANSPARENT);
     }
 
     private void initListener() {
@@ -91,6 +92,9 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
                     Toast.makeText(DetailActivity.this, "지하철 역 정보 API 호출 실패!!", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
+                    /**
+                     * 예외 처리 추가 해야 한다.
+                     */
                     station = parsingJson(result);
                     setTabLayout();
                     setDetailView();
@@ -132,10 +136,7 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
             TabText tabText = new TabText(this, station.getStationList()[i].getSubwayNm());
             tab.setCustomView(tabText);
             tabLayout.addTab(tab);
-            // tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.tab_icon));
         }
-
-
     }
 
     private void setDetailView() {
@@ -143,7 +144,6 @@ public class DetailActivity extends AppCompatActivity implements StationAdapter.
         stationAdapter = new StationAdapter(this, station.getStationList());
         viewPager.setAdapter(stationAdapter);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -13,25 +13,34 @@ public class Const {
     public static final String STATION_LINE = "http://openapi.seoul.go.kr:8088/53716a524168393235356f44476e77/json/SearchSTNBySubwayLineService/1/120/";
 
     /**
+     * 지하철 역의 정보 ( 외부코드 불러오기 위한 )
+     *
+     * STATION_INFO 사용할 때 뒤에 "역 이름"을 붙여야 한다.
+     */
+    private static final String STATION_INFO = "http://openAPI.seoul.go.kr:8088/53716a524168393235356f44476e77/json/SearchInfoBySubwayNameService/1/10/";
+
+    /**
      * 역의 정보
      *
-     * STATION_INFO 사용할 때 뒤에 "역 이름" 을 붙여야 한다.
+     * STATION_DETAIL_INFO 사용할 때 뒤에 "역 이름" 을 붙여야 한다.
      */
-    //public static final String STATION_INFO = "http://swopenAPI.seoul.go.kr/api/subway/53716a524168393235356f44476e77/json/stationInfo/0/10/";
-    public static final String STATION_INFO = "http://swopenAPI.seoul.go.kr/api/subway/sample/json/stationInfo/0/5/";
+    public static final String STATION_DETAIL_INFO = "http://swopenAPI.seoul.go.kr/api/subway/53716a524168393235356f44476e77/json/stationInfo/0/10/";
+    // public static final String STATION_DETAIL_INFO = "http://swopenAPI.seoul.go.kr/api/subway/sample/json/stationInfo/0/5/";
 
     /**
      * 실시간 도착 정보
      *
      * STATION__RT 를 사용할 때 뒤에"역 이름" 을 붙여야 한다.
      */
-    //public static final String STATION_RT = "http://swopenapi.seoul.go.kr/api/subway/53716a524168393235356f44476e77/json/realtimeStationArrival/0/20/";
-    public static final String STATION_RT = "http://swopenapi.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/0/5/";
+    public static final String STATION_RT = "http://swopenapi.seoul.go.kr/api/subway/53716a524168393235356f44476e77/json/realtimeStationArrival/0/20/";
+    //public static final String STATION_RT = "http://swopenapi.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/0/5/";
 
     /**
      * http://data.seoul.go.kr/openinf/openapiview.jsp?infId=OA-110&tMenu=11
      */
     public static final String STATION_TIMETABLE = "http://openapi.seoul.go.kr:8088/53716a524168393235356f44476e77/json/SearchSTNTimeTableByFRCodeService/1/5/";
+
+
 
     public static final String CONNECTION_ERROR = "999";
 
